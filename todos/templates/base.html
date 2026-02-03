@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script src="https://unpkg.com/alpinejs" defer></script>
+
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js" integrity="sha384-/TgkGk7p307TH7EXJDuUlgG3Ce1UVolAOFopFekQkkXihi5u/6OCvVKyz1W+idaz" crossorigin="anonymous"></script>
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %} Task Manager {% endblock %}</title>
+  </head>
+
+  <body class="h-screen bg-base-200">
+    {% block content %} {% endblock %}
+    <script>
+       function rerenderNavbar(){
+
+        console.log('Navbar rerendered')
+        htmx.ajax('GET',`{{url_for('rerender_navbar')}}`
+        ,{swap:'outerHTML',target:'#navbar'})
+       }
+    </script>
+  </body>
+</html>

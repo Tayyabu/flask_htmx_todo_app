@@ -1,0 +1,48 @@
+<form
+  hx-post='{{url_for("register")}}'
+  hx-on::before-request="disableBtn()"
+  hx-on::after-request="enableBtn();this.reset();setTimeout(rerenderNavbar,1000)"
+   hx-swap="afterbegin"
+  class="fieldset bg-base-100 border-base-100 flex flex-col w-full rounded-box border p-4"
+>
+  <legend class="fieldset-legend flex justify-center text-3xl font-bold w-full">
+    Register
+  </legend>
+ 
+  {{ form.hidden_tag() }}
+
+  {{ form.username.label(class="label") }}
+  {{ form.username(class="input w-full input-primary", placeholder="Username") }}
+  
+  {{ form.email.label(class="label") }}
+  {{ form.email(class="input w-full input-primary", placeholder="Email") }}
+
+  {{ form.password.label(class="label") }}
+  {{ form.password(class="input w-full input-primary", placeholder="Password") }}
+
+  {{ form.confirm_password.label(class="label") }}
+  {{ form.confirm_password(class="input w-full input-primary", placeholder="Confirm Pass") }}
+
+  <button 
+    type="submit"
+     data-register-form-btn
+    class="btn btn-primary mt-4"
+  >
+   Register
+  </button>
+</form>
+
+<script>
+const registerbtn = document.querySelector('[data-register-form-btn]')
+function disableBtn(){
+    registerbtn.disabled = true
+}
+
+function enableBtn(){
+    registerbtn.disabled = false
+}
+
+
+
+   
+</script>

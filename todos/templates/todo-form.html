@@ -1,0 +1,45 @@
+
+<form
+ {% if todo %} hx-post='{{url_for("edit_todo",id=todo.id)}}' {% else %} hx-post='{{url_for("add_todo")}}'{% endif %}
+  hx-on::before-request="disableBtn()"
+  hx-on::after-request="enableBtn();this.reset();my_modal_1.close()"
+  hx-target = "#todos"
+   hx-swap="outerHTML"
+  class="fieldset bg-base-100 border-base-100 flex flex-col w-full rounded-box border p-4"
+>
+  <legend class="fieldset-legend flex justify-center text-3xl font-bold w-full">
+    Todo Form
+  </legend>
+ 
+  {{ form.hidden_tag() }}
+
+  {{ form.title.label(class="label") }}
+  {{ form.title(class="input w-full input-primary", placeholder="Title") }}
+  
+  {{ form.content.label(class="label") }}
+  {{ form.content(class="textarea w-full textarea-primary", placeholder="Content") }}
+
+  <button 
+    type="submit"
+     data-todo-form-btn
+    class="btn btn-primary mt-4"
+  >
+   Submit
+  </button>
+</form>
+
+<script>
+const todobtn = document.querySelector('[data-todo-form-btn]')
+function disableBtn(){
+    todobtn.disabled = true
+}
+
+function enableBtn(){
+    todobtn.disabled = false
+}
+
+
+
+   
+</script>
+

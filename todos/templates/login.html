@@ -1,0 +1,42 @@
+<form
+  hx-post='{{url_for("login")}}'
+  hx-on::before-request="disableBtn()"
+  hx-on::after-request="enableBtn();this.reset();setTimeout(rerenderNavbar,1000)"
+   hx-swap="afterbegin"
+  class="fieldset bg-base-100 border-base-100 flex flex-col w-full rounded-box border p-4"
+>
+  <legend class="fieldset-legend flex justify-center text-3xl font-bold w-full">
+    Login
+  </legend>
+ {{ form.hidden_tag() }}
+   {{ form.email.label(class="label") }}
+  {{ form.email(class="input w-full input-primary", placeholder="Email") }}
+
+  {{ form.password.label(class="label") }}
+  {{ form.password(class="input w-full input-primary", placeholder="Password") }}
+
+
+  <button 
+    type="submit"
+
+     data-login-form-btn
+    class="btn btn-primary mt-4"
+  >Login</button>
+</form>
+
+
+<script>
+const loginbtn = document.querySelector('[data-login-form-btn]')
+function disableBtn(){
+    loginbtn.disabled = true
+    console.log("disabled")
+}
+
+function enableBtn(){
+    loginbtn.disabled = false
+}
+
+
+
+   
+</script>

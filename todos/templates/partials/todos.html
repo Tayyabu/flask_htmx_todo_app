@@ -1,0 +1,11 @@
+
+<div id="todos" class="grid grid-cols-1 md:grid-cols-2 p-4 gap-4">
+  <div class="col-span-2 flex justify-center p-4">
+    <h1 class="text-3xl font-bold">Todo Manager</h1>
+  </div>
+  {% if current_user.is_authenticated %}
+{% for todo in todos %}
+  {% include "partials/todo.html" %}
+  {% endfor %}
+  {% endif %}
+</div>

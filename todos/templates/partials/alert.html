@@ -1,0 +1,12 @@
+
+{% if  message %}
+
+<div role="alert" x-transition   x-transition:enter.duration.500ms
+    x-transition:leave.duration.400ms x-data="{showAlert:true}" x-show="showAlert" class="alert {% if error %} alert-error {% else %} alert-success {% endif %}  alert-soft flex justify-between">
+  <div>
+    <div class="font-bold">{{ message }}</div>
+  </div>
+  <button type="button" @click="showAlert=false" class="btn btn-sm">Dissmiss</button>
+</div>
+
+{% endif %}

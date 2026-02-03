@@ -1,0 +1,16 @@
+<div id="todo-{{todo.id}}" class="card card-dash bg-base-100 shadow">
+    <div class="card-body">
+      <h2 class="card-title {% if todo.done %} line-through text-gray-500 {% endif %}">{{todo.title}}</h2>
+     
+     {% if not todo.done %} 
+      <p >
+      {{todo.content}}
+      </p>
+      {% endif %}
+      <div class="card-actions items-center justify-end">
+        <input hx-patch="{{url_for('toggle_todo',id=todo.id)}}" hx-swap="outerHTML" hx-target="#todo-{{todo.id}}" hx-trigger="click" type="checkbox" {% if todo.done %} checked="checked" {% endif %} class="toggle toggle-primary " />
+        <button hx-get="{{url_for('edit_todo',id=todo.id)}}" hx-target=".modal-box" onclick="my_modal_1.showModal()" class="btn btn-primary">Edit</button>
+        <button hx-delete="{{url_for('delete_todo',id=todo.id)}}" hx-target="#todos" hx-swap="outerHTML" class="btn btn-error">Delete</button>
+      </div>
+    </div>
+  </div>
